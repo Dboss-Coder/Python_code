@@ -1,5 +1,6 @@
 ###p13 0001
-
+## librarys
+import time
 ##defined variables
 trigger = 0
 active = 0
@@ -14,30 +15,34 @@ def activate(statment):
             print("boop beep")
         else:
             continue
+def calculate(statment):
+    symbol = input("symbol?    ")
+    x = int(input("x    "))
+    y = int(input("y    "))
+    if symbol in ["+", "-", "*", "/"]:
+        if symbol == "+":
+            print(x + y)
+        if symbol == "-":
+            print(x - y)
+        if symbol == "*":
+            print(x * y)
+        if symbol == "/":
+            print(x / y)
+    else:
+        print("?")
+
       
 def request(statment):
     if active == 1:
         if statment == "hello":
             print("bweep boo")
         if statment == "calculate something":
-            symbol = input("symbol?  ")
-            x = int(input("x"))
-            y = int(input("y"))
-            if symbol in ["+", "-", "*", "/"]:
-                if symbol == "+":
-                    print(x + y)
-                if symbol == "-":
-                    print(x - y)
-                if symbol == "*":
-                    print(x * y)
-                if symbol == "/":
-                    print(x / y)
-            else:
-                print("?")
-  
+            calculate(statment)
+        
 
 
 ##implimentation of functions in if statments and for loops
 #activate p1
 activate("hey p1")
-request("calculate something")
+time.sleep(1)
+request(input("say something:      "))
