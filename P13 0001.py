@@ -6,12 +6,6 @@ import time
 active = 0
 
 ##functions of use
-def speak(x):
-    import pyttsx3
-    text_speech = pyttsx3.init()
-    text_speech.say(x)
-    text_speech.runAndWait()
-
 def activate(statment):
     global active
     acceptstatments = ["hey p1", "p1", "p13", "pie", "robobot"]
@@ -21,6 +15,30 @@ def activate(statment):
             speak("system activated. issue command")
         else:
             continue
+
+def speak(x):
+    import pyttsx3
+    text_speech = pyttsx3.init()
+    text_speech.say(x)
+    text_speech.runAndWait()
+
+#def search(statment):
+class Gsearch_python:
+    def __init__(self,name_search):
+        self.name = name_search
+    def Gsearch(self):
+        count = 0
+        try :
+            from googlesearch import search
+        except ImportError:
+            print("No Module named 'google' Found")
+        for i in search(query=self.name,tld='co.in',lang='en',num=10,stop=1,pause=2):
+            count += 1
+            print (count)
+            print(i + '\n')
+#        if __name__=='__main__':
+
+
 def calculate(statment):
     speak("input operation")
     symbol = input()
@@ -44,7 +62,9 @@ def countdown():
         speak(i)
         time.sleep(1)
     
-
+def search(statment):
+    gs = Gsearch_python(statment)
+    gs.Gsearch()
 
 
 
@@ -74,16 +94,18 @@ def request(statment):
             print("p13 0001")
             speak("my name is p13 0001 but you can call me p1 or p13")
         if statment == "how old are you":
-            speak("i was born 6/6/22 at aproximatly 2pm, you do the math")
-        
-
+            speak("i was born 5/6/22 at aproximatly 2pm, you do the math")
+        if statment == "gimme a link":
+            speak("which link")
+            search(input())
         
 
 
 ##implimentation of functions in if statments and for loops
-#activate p1
+activate("p1")
 while True:
     activate(input())
     while active == 1:
-        time.sleep(1)
-        request(input())
+        #time.sleep(1)
+        #request(input())
+
