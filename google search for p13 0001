@@ -1,3 +1,4 @@
+import urllib.request 
 
 class Gsearch_python:
     def __init__(self,name_search):
@@ -12,6 +13,8 @@ class Gsearch_python:
             count += 1
             print (count)
             print(i + '\n')
-    if __name__=='__main__':
-        gs = Gsearch_python("tardis")
-        gs.Gsearch()
+    
+        
+        
+gs = Gsearch_python("tardis")
+link = gs.Gsearch()

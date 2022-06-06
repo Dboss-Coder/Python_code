@@ -64,8 +64,17 @@ def countdown():
     
 def search(statment):
     gs = Gsearch_python(statment)
+    speak("searching")
     gs.Gsearch()
+    speak("link found")
 
+def searchyoutube(statment):
+    narrowsearch = "youtube " + statment
+    search(narrowsearch)
+
+def searchnetflix(statment):
+    narrowsearch = "netflix" + statment
+    search(narrowsearch)
 
 
 def request(statment):
@@ -98,14 +107,19 @@ def request(statment):
         if statment == "gimme a link":
             speak("which link")
             search(input())
+            print("control click link to open")
+        if statment == "youtube please":
+            speak("okay, what would you like to watch")
+            searchyoutube(input())
+        if statment == "netflix please":
+            speak("what would you like to watch")
+            searchnetflix(input())
         
 
 
 ##implimentation of functions in if statments and for loops
-activate("p1")
 while True:
     activate(input())
     while active == 1:
-        #time.sleep(1)
-        #request(input())
-
+        time.sleep(1)
+        request(input())
