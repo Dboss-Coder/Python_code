@@ -26,15 +26,17 @@ def recognition():
         x = 1
         while x == 1:
             audio_data = r.record(source, duration=5)
-            print("Recognizing...")
-            # convert speech to text
-            text = r.recognize_google(audio_data)
-            if text != 0:
-                print(text)
-                return text
-            else:
+            try:
+                print("...")
+                # convert speech to text
+                text = r.recognize_google(audio_data)
+                if text != 0:
+                    print(text)
+                    return text
+                else:
+                    continue
+            except sr.UnknownValueError:
                 continue
-
 def speak(x):
     import pyttsx3
     text_speech = pyttsx3.init()
@@ -102,7 +104,7 @@ def request(statment):
             speak("good day")
         if statment == "calculate something":
             calculate(statment)
-        if statment == "e":
+        if statment == "E":
             while True:
                 speak("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
         if statment == "kill yourself":
@@ -112,9 +114,9 @@ def request(statment):
             speak("initiateing missl launch protocal")
             countdown(5)
             speak("gotcha")
-        if statment == "thanks":
+        if statment == "thank you":
             speak("it is in my programming to be a good algorithm")
-        if statment == "shutdown":
+        if statment == "shut down":
             speak("bye,, initiating shut down sequence")
             time.sleep(0.5)
             exit()
@@ -127,10 +129,10 @@ def request(statment):
             speak("which link")
             search(recognition())
             print("control click link to open")
-        if statment == "youtube please":
+        if statment == "YouTube please":
             speak("okay, what would you like to watch")
             searchyoutube(recognition())
-        if statment == "netflix please":
+        if statment == "Netflix please":
             speak("what would you like to watch")
             searchnetflix(recognition())
         
