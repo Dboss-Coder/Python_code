@@ -1,6 +1,11 @@
 ###p13 0001
 ## librarys
 import time
+import speech_recognition as sr 
+import os 
+from pydub import AudioSegment
+from pydub.silence import split_on_silence
+r = sr.Recognizer()
 ##defined variables
 
 active = 0
@@ -8,13 +13,27 @@ active = 0
 ##functions of use
 def activate(statment):
     global active
-    acceptstatments = ["hey p1", "p1", "p13", "pie", "robobot"]
+    acceptstatments = ["hey p1", "P1", "p13", "pie", "robobot", "pi", "computer"]
     for i in range(0, len(acceptstatments)):
         if statment == acceptstatments[i]:
             active = 1
             speak("system activated. issue command")
         else:
             continue
+def recognition():
+    with sr.Microphone() as source:
+        # read the audio data from the default microphone
+        x = 1
+        while x == 1:
+            audio_data = r.record(source, duration=5)
+            print("Recognizing...")
+            # convert speech to text
+            text = r.recognize_google(audio_data)
+            if text != 0:
+                print(text)
+                return text
+            else:
+                continue
 
 def speak(x):
     import pyttsx3
@@ -57,8 +76,8 @@ def calculate(statment):
     else:
         print("?")
 
-def countdown():
-    for i in range(10,0,-1):
+def countdown(num):
+    for i in range(num,0,-1):
         speak(i)
         time.sleep(1)
     
@@ -89,9 +108,9 @@ def request(statment):
         if statment == "kill yourself":
             speak("uno reverse card, mother ducker")
             exit()
-        if statment == "deploy missles":
+        if statment == "deploy missiles":
             speak("initiateing missl launch protocal")
-            countdown()
+            countdown(5)
             speak("gotcha")
         if statment == "thanks":
             speak("it is in my programming to be a good algorithm")
@@ -101,25 +120,24 @@ def request(statment):
             exit()
         if statment == "what is your name":
             print("p13 0001")
-            speak("my name is p13 0001 but you can call me p1 or p13")
+            speak("operating number p13 0001 but you can call me p1 or p13")
         if statment == "how old are you":
             speak("i was born 5/6/22 at aproximatly 2pm, you do the math")
-        if statment == "gimme a link":
+        if statment == "give me a link":
             speak("which link")
-            search(input())
+            search(recognition())
             print("control click link to open")
         if statment == "youtube please":
             speak("okay, what would you like to watch")
-            searchyoutube(input())
+            searchyoutube(recognition())
         if statment == "netflix please":
             speak("what would you like to watch")
-            searchnetflix(input())
+            searchnetflix(recognition())
         
 
 
 ##implimentation of functions in if statments and for loops
 while True:
-    activate(input())
+    activate(recognition())
     while active == 1:
-        time.sleep(1)
-        request(input())
+        request(recognition())
