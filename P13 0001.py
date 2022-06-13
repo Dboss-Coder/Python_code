@@ -7,7 +7,7 @@ from pydub import AudioSegment
 from pydub.silence import split_on_silence
 r = sr.Recognizer()
 ##defined variables
-
+shoppinglist = []
 active = 0
 
 ##functions of use
@@ -77,6 +77,10 @@ def calculate(statment):
             print(x / y)
     else:
         print("?")
+def list():
+    speak("what should i add")
+    global shoppinglist
+    shoppinglist.append(recognition())
 
 def countdown(num):
     for i in range(num,0,-1):
@@ -135,6 +139,12 @@ def request(statment):
         if statment == "Netflix please":
             speak("what would you like to watch")
             searchnetflix(recognition())
+        if statment == "add something to my list":
+            list()
+        if statment == "read my list":
+            speak(shoppinglist)
+
+
         
 
 
